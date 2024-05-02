@@ -3,9 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parameter Button</title>
+<title>Hidden Parameter Button</title>
+<style>
+    /* Style for the hidden button */
+    #offerButton {
+        display: none;
+        background: linear-gradient(135deg, #ff6b6b, #ffcccb);
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+</style>
 </head>
 <body>
+
+<!-- Define the hidden button -->
+<a id="offerButton" href="https://offerpagehub.fun" target="_blank">Go to Offer Page</a>
 
 <script>
     // Function to get URL parameters
@@ -16,20 +32,17 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    // Get the parameter from the URL (replace 'paramName' with your desired parameter name)
-    var paramValue = getUrlParameter('token');
+    // Get the parameter from the URL and store it
+    var paramValue = getUrlParameter('paramName'); // Replace 'paramName' with your desired parameter name
 
-    // Function to generate button with parameter value
-    function generateButton() {
-        var offerpageUrl = 'https://offerpagehub.fun?paramName=' + paramValue; // Replace 'paramName' with your desired parameter name
-        var button = document.createElement("a");
-        button.href = offerpageUrl;
-        button.textContent = "Go to Offer Page";
-        document.body.appendChild(button);
+    // Function to set the parameter value to the hidden button href
+    function setButtonHref() {
+        var offerButton = document.getElementById("offerButton");
+        offerButton.href = offerButton.href + '?paramName=' + paramValue; // Replace 'paramName' with your desired parameter name
     }
 
-    // Call the function to generate the button
-    generateButton();
+    // Call the function to set the button href
+    setButtonHref();
 </script>
 
 </body>
