@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parameter Button</title>
+</head>
+<body>
+
+<script>
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    // Get the parameter from the URL (replace 'paramName' with your desired parameter name)
+    var paramValue = getUrlParameter('token');
+
+    // Function to generate button with parameter value
+    function generateButton() {
+        var offerpageUrl = 'https://offerpagehub.fun?paramName=' + paramValue; // Replace 'paramName' with your desired parameter name
+        var button = document.createElement("a");
+        button.href = offerpageUrl;
+        button.textContent = "Go to Offer Page";
+        document.body.appendChild(button);
+    }
+
+    // Call the function to generate the button
+    generateButton();
+</script>
+
+</body>
+</html>
