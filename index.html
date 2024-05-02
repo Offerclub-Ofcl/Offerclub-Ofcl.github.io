@@ -21,7 +21,7 @@
 <body>
 
 <!-- Define the hidden button -->
-<button id="offerButton" href="https://offerpagehub.fun" target="_blank">Go to Offer Page</button>
+<button id="offerButton" href="https://offerpagehub.fun">Go to Offer Page</button>
 
 <script>
     // Function to get URL parameters
@@ -38,7 +38,7 @@
     // Function to set the parameter value to the hidden button href
     function setButtonHref() {
         var offerButton = document.getElementById("offerButton");
-        offerButton.href = offerButton.href + '?paramName=' + paramValue; // Replace 'paramName' with your desired parameter name
+        offerButton.href = offerButton.href + '?token=' + paramValue; // Replace 'paramName' with your desired parameter name
     }
 
     // Call the function to set the button href
