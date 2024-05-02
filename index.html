@@ -7,7 +7,6 @@
 <style>
     /* Style for the hidden button */
     #offerButton {
-        display: none;
         background: linear-gradient(135deg, #ff6b6b, #ffcccb);
         color: #fff;
         padding: 10px 20px;
@@ -21,7 +20,7 @@
 <body>
 
 <!-- Define the hidden button -->
-<a id="offerButton" href="https://offerpagehub.fun" target="_blank">Go to Offer Page</a>
+<a id="offerButton" href="https://offerpagehub.fun" target="_blank" style="display:none;">Go to Offer Page</a>
 
 <script>
     // Function to get URL parameters
@@ -35,16 +34,17 @@
     // Get the parameter from the URL and store it
     var paramValue = getUrlParameter('token'); // Replace 'token' with your desired parameter name
 
-    // Function to set the parameter value to the hidden button href
+    // Function to set the parameter value to the hidden button href and display the button
     function setButtonHref() {
         var offerButton = document.getElementById("offerButton");
         offerButton.href = offerButton.href + '?token=' + paramValue; // Replace 'token' with your desired parameter name
-        offerButton.style.display = 'inline-block'; // Make the button visible after setting href
+        offerButton.style.display = 'inline-block'; // Make the button visible
     }
 
-    // Call the function to set the button href
+    // Call the function to set the button href and display the button
     setButtonHref();
 </script>
 
 </body>
 </html>
+
