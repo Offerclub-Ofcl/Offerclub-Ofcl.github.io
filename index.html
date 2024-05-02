@@ -22,14 +22,27 @@
     #offerButton:hover {
         background: linear-gradient(135deg, #ff8c69, #9b111e);
     }
+
+	 #timer {
+        font-size: 18px;
+        color: #555;
+        margin-top: 10px;
+    }
 </style>
 </head>
 <body><center>
 <iframe data-aa='2322096' src='//ad.a-ads.com/2322096?size=300x250' style='width:300px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
 <!-- Define the hidden button -->
 <br><a id="offerButton" href="https://offerpagehub.fun" target="_blank" style="display:none;">Go to Offer Page</a>
-
+<!-- Timer display -->
+<div id="timer">Timer: 5 seconds</div>
 <script>
+
+	 // Function to update the timer display
+    function updateTimerDisplay(timeRemaining) {
+        var timerElement = document.getElementById("timer");
+        timerElement.textContent = "Timer: " + timeRemaining + " seconds";
+    }
     // Function to get URL parameters
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -46,6 +59,15 @@
         var offerButton = document.getElementById("offerButton");
         offerButton.href = offerButton.href + '?token=' + paramValue; // Replace 'token' with your desired parameter name
         offerButton.style.display = 'inline-block'; // Make the button visible
+      var timeRemaining = 5;
+        var timerInterval = setInterval(function() {
+            timeRemaining--;
+            updateTimerDisplay(timeRemaining);
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                offerButton.style.display = 'inline-block'; // Make the button visible after 5 seconds
+            }
+        }, 1000); // Update timer every second
     }
 
     // Call the function to set the button href and display the button
