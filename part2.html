@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect to AdLink</title>
+</head>
+<body>
+
+<!-- AdLink Redirect Button -->
+<button id="adLinkButton" onclick="redirectToAdLink()">Click here to view Ad</button>
+
+<!-- Real Link Button (Initially hidden) -->
+<button id="realLinkButton" style="display:none;">Click here for real link</button>
+
+<script>
+    function redirectToAdLink() {
+        // Check if the ad has already been clicked
+        if (!localStorage.getItem("adClicked")) {
+            // Redirect to the ad link
+            window.location.href = "https://example.com/advertisement";
+
+            // Set the adClicked flag in local storage
+            localStorage.setItem("adClicked", true);
+
+            // Show the real link button after 10 seconds
+            setTimeout(function() {
+                document.getElementById("realLinkButton").style.display = "block";
+            }, 10000); // 10 seconds delay
+        } else {
+            // Redirect to the real link
+            window.location.href = "https://example.com/real-link";
+        }
+    }
+</script>
+
+</body>
+</html>
