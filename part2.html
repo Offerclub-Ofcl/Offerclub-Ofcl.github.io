@@ -5,7 +5,7 @@
     <style>
         /* Button styling */
         #redirectButton {
-            background: linear-gradient(to right, #FF5733, #C70039); /* Dark orange to red gradient */
+            background: linear-gradient(to right, #006500, #C70039); /* Dark orange to red gradient */
             border: none;
             color: white;
             padding: 15px 30px;
@@ -20,7 +20,7 @@
         }
         /* Hover effect */
         #redirectButton:hover {
-            background: linear-gradient(to right, #C70039, #FF5733); /* Red to dark orange gradient on hover */
+            background: linear-gradient(to right, #C70039, #006500); /* Red to dark orange gradient on hover */
         }
     </style>
 </head>
@@ -33,23 +33,25 @@
     function redirectToLink() {
         // Check if the ad has already been clicked
         if (!localStorage.getItem("adClicked")) {
-            // Redirect to the ad link
-            window.location.href = "https://example.com/advertisement";
-
+            // Redirect to the real link
+            window.location.href = "https://example.com/real-link";
+            
             // Set the adClicked flag in local storage
             localStorage.setItem("adClicked", true);
-
-            // Change button text to "View Ad" after clicking
-            document.getElementById("redirectButton").innerText = "View Ad";
+            
+            // Change the page title
+            document.title = "Redirecting...";
         } else {
+            // Change button text to "Continue"
+            document.getElementById("redirectButton").innerText = "Continue";
+            
             // Redirect to the real link
             window.location.href = "https://example.com/real-link";
             
             // Remove the adClicked flag from local storage
             localStorage.removeItem("adClicked");
             
-            // Change button text to "Continue" after clicking
-            document.getElementById("redirectButton").innerText = "Continue";
+            
         }
     }
 </script>
