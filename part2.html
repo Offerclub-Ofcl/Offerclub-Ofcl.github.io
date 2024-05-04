@@ -5,6 +5,7 @@
     <style>
         /* Button styling */
         #redirectButton {
+            display: none; /* Initially hidden */
             background: linear-gradient(to right, #FF5733, #C70039); /* Dark orange to red gradient */
             border: none;
             color: white;
@@ -22,9 +23,63 @@
         #redirectButton:hover {
             background: linear-gradient(to right, #C70039, #FF5733); /* Red to dark orange gradient on hover */
         }
+        /* Circular loading bar container */
+        .loader-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        /* Circular loading bar */
+        .loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid transparent;
+            border-top-color: purple;
+            animation: spin 1s linear infinite;
+        }
+        /* Animation keyframes */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Countdown text */
+        #countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: purple;
+        }
     </style>
 </head>
 <body>
+
+<!-- Countdown Timer and Loader -->
+<div class="loader-container">
+    <div class="loader"></div>
+    <div id="countdown"></div>
+</div>
+
+<script>
+    // Show the redirect button after 10 seconds
+    setTimeout(function() {
+        var count = 10;
+        var countdown = setInterval(function() {
+            document.getElementById("countdown").innerHTML = count;
+            count--;
+            if (count < 0) {
+                clearInterval(countdown);
+                document.getElementById("redirectButton").style.display = "block";
+                document.querySelector(".loader-container").style.display = "none";
+            }
+        }, 1000); // Update every 1 second
+    }, 10000); // 10 seconds delay
+</script>
 
 <!-- Redirect Button -->
 <button id="redirectButton" onclick="redirectToLink()">Click here to continue</button>
@@ -34,7 +89,7 @@
         // Check if the ad has already been clicked
         if (!localStorage.getItem("adClicked")) {
             // Redirect to the real link
-            window.location.href = "https://example.com/ad-link";
+            window.location.href = "https://example.com/real-link";
             
             // Set the adClicked flag in local storage
             localStorage.setItem("adClicked", true);
