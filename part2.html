@@ -26,7 +26,8 @@
                 document.getElementById("realLinkButton").style.display = "block";
             }, 10000); // 10 seconds delay
         } else {
-            alert("You've already clicked the ad link!");
+            localStorage.setItem("adClicked", true);
+
         }
     }
 </script>
