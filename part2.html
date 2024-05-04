@@ -9,7 +9,7 @@
 <button id="adLinkButton" onclick="redirectToAdLink()">Click here to view Ad</button>
 
 <!-- Real Link Button (Initially hidden) -->
-<button id="realLinkButton" style="display:none;">Click here for real link</button>
+<button id="realLinkButton" href="http://offerlinks.in" style="display:none;">Click here for real link</button>
 
 <script>
     function redirectToAdLink() {
@@ -26,8 +26,7 @@
                 document.getElementById("realLinkButton").style.display = "block";
             }, 10000); // 10 seconds delay
         } else {
-            // Redirect to the real link
-            window.location.href = "https://example.com/real-link";
+            alert("You've already clicked the ad link!");
         }
     }
 </script>
