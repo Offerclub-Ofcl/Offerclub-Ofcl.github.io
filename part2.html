@@ -39,12 +39,7 @@
             border-radius: 50%;
             border: 8px solid transparent;
             border-top-color: purple;
-            animation: spin 1s linear infinite;
-        }
-        /* Animation keyframes */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            transform: rotate(-90deg);
         }
         /* Countdown text */
         #countdown {
@@ -54,6 +49,7 @@
             transform: translate(-50%, -50%);
             font-size: 20px;
             color: purple;
+            font-weight: bold; /* Bold text */
         }
     </style>
 </head>
@@ -71,6 +67,9 @@
         var count = 10;
         var countdown = setInterval(function() {
             document.getElementById("countdown").innerHTML = count;
+            document.querySelector(".loader").style.borderTopColor = "purple"; // Reset border color
+            document.querySelector(".loader").style.borderRightColor = "purple"; // Reset border color
+            document.querySelector(".loader").style.transform = "rotate(" + (-90 + (10 - count) * 36) + "deg)"; // Calculate fill
             count--;
             if (count < 0) {
                 clearInterval(countdown);
