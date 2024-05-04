@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirect to AdLink</title>
+    <title>Redirect to Link</title>
+    <style>
+        /* Button styling */
+        #redirectButton {
+            background: linear-gradient(to right, #FF5733, #C70039); /* Dark orange to red gradient */
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        /* Hover effect */
+        #redirectButton:hover {
+            background: linear-gradient(to right, #C70039, #FF5733); /* Red to dark orange gradient on hover */
+        }
+    </style>
 </head>
 <body>
 
-<!-- AdLink Redirect Button -->
-<button id="adLinkButton" onclick="redirectToAdLink()">Click here to view Ad</button>
-
-<!-- Real Link Button (Initially hidden) -->
-<button id="realLinkButton" href="http://offerlinks.in" style="display:none;">Click here for real link</button>
+<!-- Redirect Button -->
+<button id="redirectButton" onclick="redirectToLink()">Click here to continue</button>
 
 <script>
-    function redirectToAdLink() {
+    function redirectToLink() {
         // Check if the ad has already been clicked
         if (!localStorage.getItem("adClicked")) {
             // Redirect to the ad link
@@ -21,13 +39,17 @@
             // Set the adClicked flag in local storage
             localStorage.setItem("adClicked", true);
 
-            // Show the real link button after 10 seconds
-            setTimeout(function() {
-                document.getElementById("realLinkButton").style.display = "block";
-            }, 10000); // 10 seconds delay
+            // Change button text to "View Ad" after clicking
+            document.getElementById("redirectButton").innerText = "View Ad";
         } else {
-            localStorage.removeItem("adClicked", true);
-
+            // Redirect to the real link
+            window.location.href = "https://example.com/real-link";
+            
+            // Remove the adClicked flag from local storage
+            localStorage.removeItem("adClicked");
+            
+            // Change button text to "Continue" after clicking
+            document.getElementById("redirectButton").innerText = "Continue";
         }
     }
 </script>
