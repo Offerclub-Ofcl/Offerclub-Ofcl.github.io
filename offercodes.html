@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twinkling Background with Sticky Header, Glowing Button, and Toggle Menu</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+    }
+
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 10px 0;
+        z-index: 2;
+    }
+
+    #logo {
+        color: white;
+        font-size: 24px;
+        margin-left: 20px;
+    }
+
+    #menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 3;
+    }
+
+    #menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #menu ul li {
+        margin-bottom: 10px;
+    }
+
+    #menu ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    #offerText {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 36px;
+        z-index: 1;
+    }
+
+    #button {
+        position: absolute;
+        top: calc(50% + 50px);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        border: 2px solid transparent;
+        color: white;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: border-color 0.3s;
+    }
+
+    #button:hover {
+        border-color: #ff0000;
+    }
+
+    .twinkle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: twinkling 1s infinite alternate;
+    }
+
+    @keyframes twinkling {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    /* Menu button styling */
+    #menuBtn {
+        display: none;
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        z-index: 3;
+    }
+
+    #menuBtn span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        margin-bottom: 5px;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    #menuBtn.open span:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    #menuBtn.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menuBtn.open span:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+</style>
+</head>
+<body>
+<header id="header">
+    <div id="logo">YourLogo</div>
+    <button id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav id="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 id="offerText">Offercodes</h1>
+<button id="button">Click Me</button>
+<script>
+    document.addEventListener('mousemove', function (e) {
+        let twinkle = document.createElement('div');
+        twinkle.classList.add('twinkle');
+        twinkle.style.left = e.pageX + 'px';
+        twinkle.style.top = e.pageY + 'px';
+        document.body.appendChild(twinkle);
+        setTimeout(function () {
+            twinkle.remove();
+        }, 1000);
+    });
+
+    // Toggle menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+
+    menuBtn.addEventListener('click', function () {
+        menu.classList.toggle('open');
+    });
+</script>
+</body>
+</html>
